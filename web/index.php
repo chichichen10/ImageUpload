@@ -1,5 +1,8 @@
-<?php
-
-echo "test test test";    
-
-?>
+<!-- 設定網頁編碼為UTF-8 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<form name="form" method="post" action="login.php">
+Username：<input type="text" name="id" /> <br>
+Password：<input type="password" name="pwd" /> <br>
+<input type="submit" name="button" value="Login" />&nbsp;&nbsp;
+<a href="captcha_index.php">captcha</a>
+</form>
