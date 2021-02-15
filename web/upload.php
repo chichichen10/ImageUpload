@@ -4,6 +4,7 @@ if (!isset($_SESSION)) {
 }
 $form_private = $_POST['private'];
 $form_data = $_FILES['form_data']['tmp_name'];
+$form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
 
 $db = parse_url(getenv("DATABASE_URL"));
@@ -17,7 +18,7 @@ $pdo = new PDO("pgsql:" . sprintf(
     ltrim($db["path"], "/")
 ));
 
-$sql = "INSERT INTO images(image,private,username) VALUES('$form_data','$form_private','$username')";
+$sql = "INSERT INTO images(image,private,username,type) VALUES('$form_data','$form_private','$username','$form_type')";
 
 $result = $pdo->query($sql);
 if ($result) {
