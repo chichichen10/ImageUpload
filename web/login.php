@@ -24,6 +24,7 @@ $row = $result->fetch();
 if ($_SESSION['check_word'] == $_POST['check']) {
     $_SESSION['check_word'] = '';
     if ($id != null && $pwd != null && $id == $row[1] && $pwd == $row[2]) {
+        $_SESSION['username'] = $id;
         echo "Logged in.";
         echo '<meta http-equiv=REFRESH CONTENT=1;url=hi.php>';
     } else {
