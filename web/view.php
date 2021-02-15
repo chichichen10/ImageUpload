@@ -17,4 +17,4 @@ $result = $pdo->query($sql);
 $row = $result->fetch();
 $type = $row['type'];
 header("Content-type:$type");
-echo ($row['image']);
+echo ((string)$row['image']);
