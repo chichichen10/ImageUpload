@@ -2,11 +2,8 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-if (!empty($_POST['private'])) {
-    $form_private = $_POST['private'];
-} else {
-    $form_private = false;
-}
+
+$form_private = $_POST['private'];
 $form_data = $_FILES['form_data']['tmp_name'];
 $form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
