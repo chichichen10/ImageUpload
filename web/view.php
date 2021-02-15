@@ -16,6 +16,6 @@ $pdo = new PDO("pgsql:" . sprintf(
 $result = $pdo->query($sql);
 $row = $result->fetch();
 $type = $row['type'];
-$data = pg_unescape_bytea($row['image']);
+// $data = pg_unescape_bytea($row['image']);
 header("Content-type:$type");
 echo $row['image'];
