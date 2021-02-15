@@ -2,9 +2,9 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-try {
+if (isset($_post['private'])) {
     $form_private = $_POST['private'];
-} catch (Exception $e) {
+} else {
     $form_private = false;
 }
 $form_data = $_FILES['form_data']['tmp_name'];
