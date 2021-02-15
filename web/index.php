@@ -11,7 +11,7 @@ if ($_SESSION['username'] != null) {
     Upload
     <input type="file" name="form_data" size="40"><br>
     Private <input type="radio" name="private" checked value = "true"></br>
-    Public <input type="radio" name="private" value = ""></br>
+    Public <input type="radio" name="private" value = "false"></br>
     <input type="submit" name="submit" value="submit">
     </form>';
 } else {
