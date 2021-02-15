@@ -18,4 +18,4 @@ $row = $result->fetch();
 $type = $row['type'];
 $data = pg_unescape_bytea($row['image']);
 header("Content-type:$type");
-echo $data;
+echo $row['image'];
