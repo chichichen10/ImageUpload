@@ -22,4 +22,4 @@ try {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
 header("Content-type:$type");
-echo $data;
+// echo $data;
