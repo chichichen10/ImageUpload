@@ -26,7 +26,7 @@ if ($_SESSION['check_word'] == $_POST['check']) {
     if ($id != null && $pwd != null && $id == $row[1] && $pwd == $row[2]) {
         $_SESSION['username'] = $id;
         echo "Logged in.";
-        echo '<meta http-equiv=REFRESH CONTENT=1;url=hi.php>';
+        echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
     } else {
         echo "Wrong username or password.";
         echo '<meta http-equiv=REFRESH CONTENT=1;url=loginpage.php>';
