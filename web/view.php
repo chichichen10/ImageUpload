@@ -18,9 +18,8 @@ $row = $result->fetch();
 $type = $row['type'];
 try {
     // $data = $row['image']->pg_unescape_bytea();
-    echo "hi";
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
 header("Content-type:$type");
-// echo $data;
+echo pg_unescape_bytea($row['image']);
