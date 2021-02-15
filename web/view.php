@@ -16,5 +16,5 @@ $pdo = new PDO("pgsql:" . sprintf(
 $result = $pdo->query($sql);
 $row = $result->fetch();
 $type = $row['type'];
-header("Content-type:$type");
+// header("Content-type:$type");
 echo ((string)$row['image']);
