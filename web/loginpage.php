@@ -4,6 +4,6 @@
     Password：<input type="password" name="pwd" required /> <br>
     Input the folllowing numbers:<br>
     <img id="imgcode" src="captcha.php" /><br />
-    <input type="text" name="check" pattern="[0-9]" required><br>
+    <input type="text" name="check" required><br>
     <input type="submit" name="button" value="Login" />&nbsp;&nbsp;
 </form>
