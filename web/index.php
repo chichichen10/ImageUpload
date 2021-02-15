@@ -10,7 +10,7 @@ if ($_SESSION['username'] != null) {
     <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> <br>
     Upload
     <input type="file" name="form_data" size="40"><br>
-    Private <input type="checkbox" name="private"></br>
+    Private <input type="checkbox" name="private" checked></br>
     <input type="submit" name="submit" value="submit">
     </form>';
 } else {
