@@ -28,9 +28,9 @@ if ($_SESSION['check_word'] == $_POST['check']) {
         echo '<meta http-equiv=REFRESH CONTENT=1;url=hi.php>';
     } else {
         echo "Wrong username or password.";
-        echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+        echo '<meta http-equiv=REFRESH CONTENT=1;url=loginpage.php>';
     }
 } else {
     echo "Wrong Verification!";
-    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=loginpage.php>';
 }
