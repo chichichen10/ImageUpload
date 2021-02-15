@@ -17,7 +17,7 @@ $result = $pdo->query($sql);
 $row = $result->fetch();
 $type = $row['type'];
 try {
-    $data = pg_unescape_bytea($row['image']);
+    $data = $row['image']->pg_unescape_bytea();
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
