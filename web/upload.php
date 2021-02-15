@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-if (isset($_POST['private'])) {
+if (!empty($_POST['private'])) {
     $form_private = $_POST['private'];
 } else {
     $form_private = false;
