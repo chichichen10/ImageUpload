@@ -6,5 +6,4 @@
     <img id="imgcode" src="captcha.php" /><br />
     <input type="text" name="check"><br>
     <input type="submit" name="button" value="Login" />&nbsp;&nbsp;
-    <a href="captcha_index.php">captcha</a>
 </form>
