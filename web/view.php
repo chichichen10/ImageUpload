@@ -15,5 +15,4 @@ $pdo = new PDO("pgsql:" . sprintf(
 
 $result = $pdo->query($sql);
 $row = $result->fetch();
-$image = imagepng($row['image']);
-echo  "<img src={$image} /><br />";
+echo  '<img src="data:image;base64,'.base64_encode($row['image'])'" alt="Image" style="width:100px;height:100px" />';
