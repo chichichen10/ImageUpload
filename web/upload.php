@@ -2,7 +2,11 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-$form_private = $_POST['private'];
+try {
+    $form_private = $_POST['private'];
+} catch (Exception $e) {
+    $form_private = false;
+}
 $form_data = $_FILES['form_data']['tmp_name'];
 $form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
