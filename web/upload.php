@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 $form_private = $_POST['private'];
-// $form_data = $_FILES['form_data']['tmp_name'];
+$form_data = $_FILES['form_data']['tmp_name'];
 $username = $_SESSION['username'];
 
 $db = parse_url(getenv("DATABASE_URL"));
@@ -16,15 +16,14 @@ $pdo = new PDO("pgsql:" . sprintf(
     $db["pass"],
     ltrim($db["path"], "/")
 ));
-echo "hi";
 
-// $sql = "INSERT INTO imgaes(private,username) VALUES('$form_private','$username')";
+$sql = "INSERT INTO images(image,private,username) VALUES('$form_data','$form_private','$username')";
 
-// $result = $pdo->query($sql);
-// if ($result) {
-//     echo "File uploaded.";
-//     echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
-// } else {
-//     echo "Failed";
-//     echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
-// }
+$result = $pdo->query($sql);
+if ($result) {
+    echo "File uploaded.";
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+} else {
+    echo "Failed";
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+}
