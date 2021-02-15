@@ -19,7 +19,7 @@ $pwd = $_POST['pwd'];
 
 $sql = "SELECT * FROM myusers WHERE name = '$id'";
 $result = $pdo->query($sql);
-$row = $result->fetchAll();
+$row = $result->fetch();
 
 if ($_SESSION['check_word'] == $_POST['check']) {
     $_SESSION['check_word'] = '';
