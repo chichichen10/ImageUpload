@@ -17,4 +17,4 @@ $result = $pdo->query($sql);
 $row = $result->fetch();
 $type = $row['type'];
 // $data = "data:image/*;base64," . base64_encode($row['image']);
-echo $row['image'];
+echo $row['time'];
