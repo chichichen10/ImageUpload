@@ -15,4 +15,4 @@ $pdo = new PDO("pgsql:" . sprintf(
 
 $result = $pdo->query($sql);
 $raw = $result->fetch();
-echo $result['image'];
+echo $raw['image'];
