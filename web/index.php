@@ -9,7 +9,7 @@ if ($_SESSION['username'] != null) {
     Upload File
     <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> <br>
     Upload
-    <input type="file" name="form_data" size="40"><br>
+    <input type="file" name="form_data" ><br>
     Private <input type="radio" name="private" checked value = "true"></br>
     Public <input type="radio" name="private" value = "false"></br>
     <input type="submit" name="submit" value="submit">
