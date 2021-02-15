@@ -14,5 +14,5 @@ $pdo = new PDO("pgsql:" . sprintf(
 ));
 
 $result = $pdo->query($sql);
-$raw = $result->fetch();
-echo $raw['image'];
+$row = $result->fetch();
+echo  "<img src={$row['image']} /><br />";
