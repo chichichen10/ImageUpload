@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 
 $form_private = $_POST['private'];
-$form_data = pg_escape_bytea($_FILES['form_data']['tmp_name']);
+$form_data = $_FILES['form_data']['tmp_name'];
 $form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
 
