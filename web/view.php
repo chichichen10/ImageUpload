@@ -16,5 +16,10 @@ $pdo = new PDO("pgsql:" . sprintf(
 $result = $pdo->query($sql);
 $row = $result->fetch();
 $type = $row['type'];
-// $data = "data:image/*;base64," . base64_encode($row['image']);
-echo $row['time'];
+try {
+    // $data = $row['image']->pg_unescape_bytea();
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+header("Content-type:$type");
+echo pg_escape_bytea($row['image']);
