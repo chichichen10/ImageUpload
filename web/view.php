@@ -22,6 +22,7 @@ $type = $row['type'];
 // header("Content-type:$type");
 // echo pg_unescape_bytea($row['image']);
 echo gettype($row['image']);
+echo get_resource_type($row['image']);
 echo '<img src="data:image/png;base64,' . $row['image'] . '">';
 ?>
 <!-- <img
