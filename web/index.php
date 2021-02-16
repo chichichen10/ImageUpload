@@ -36,7 +36,7 @@ $pdo = new PDO("pgsql:" . sprintf(
 $result = $pdo->query($sql);
 $rows = $result->fetchAll();
 foreach ($rows as $row) {
-    $data = $row['image'];
+    $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
     echo "<img src=$data>"; ?>
 <br><?php
     }
