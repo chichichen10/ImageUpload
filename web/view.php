@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 $sql = "SELECT * FROM images";
 
 $db = parse_url(getenv("DATABASE_URL"));
