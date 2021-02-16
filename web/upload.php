@@ -9,6 +9,7 @@ $form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
 
 // $form_data = pg_escape_bytea($form_data);
+$base64 = 'data:image/' . $form_type . ';base64,' . base64_encode($data);
 
 $db = parse_url(getenv("DATABASE_URL"));
 
@@ -21,7 +22,7 @@ $pdo = new PDO("pgsql:" . sprintf(
     ltrim($db["path"], "/")
 ));
 
-$sql = "INSERT INTO images(image,private,username,type) VALUES('$form_data','$form_private','$username','$form_type')";
+$sql = "INSERT INTO images(image,private,username,type) VALUES('$base64','$form_private','$username','$form_type')";
 
 $result = $pdo->query($sql);
 if ($result) {
