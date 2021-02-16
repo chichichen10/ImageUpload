@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 'On'); ?>
 <h1>This is Index</h1>
 <?php
 if ($_SESSION['username'] != null) {
@@ -18,4 +20,24 @@ if ($_SESSION['username'] != null) {
     echo '<h3> Hi guest!</h3>';
     echo '<a href="loginpage.php">Click here to Login</a>';
 }
-?>
+$sql = "SELECT * FROM images";
+
+$db = parse_url(getenv("DATABASE_URL"));
+
+$pdo = new PDO("pgsql:" . sprintf(
+    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+    $db["host"],
+    $db["port"],
+    $db["user"],
+    $db["pass"],
+    ltrim($db["path"], "/")
+));
+
+$result = $pdo->query($sql);
+$rows = $result->fetchAll();
+foreach ($rows as $row) {
+    $data = $row['image'];
+    echo "<img src=$data>"; ?>
+<br><?php
+    }
+        ?>
