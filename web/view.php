@@ -25,6 +25,7 @@ $type = $row['type'];
 // echo get_resource_type($row['image']);
 // $image = imagepng($row['image']);
 $data = $row['image'];
+echo $data;
 echo '<img src="$data">';
 ?>
 <!-- <img
