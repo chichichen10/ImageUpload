@@ -1,3 +1,3 @@
 <?php
-echo "11\\1\56\s\n";
-echo pg_escape_bytea("11\\1\56\s");
+
+echo pg_unescape_bytea(pg_escape_bytea("STRIN\\\\G"));
