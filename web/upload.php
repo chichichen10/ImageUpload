@@ -9,7 +9,7 @@ $form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
 
 // $form_data = pg_escape_bytea($form_data);
-$base64 = 'data:image/' . $form_type . ';base64,' . base64_encode($data);
+$base64 = 'data:image/' . $form_type . ';base64,' . base64_encode($form_data);
 
 $db = parse_url(getenv("DATABASE_URL"));
 
