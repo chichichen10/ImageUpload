@@ -8,6 +8,8 @@ $form_data = $_FILES['form_data']['tmp_name'];
 $form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
 
+$form_data = pg_escape_bytea($form_data);
+
 $db = parse_url(getenv("DATABASE_URL"));
 
 $pdo = new PDO("pgsql:" . sprintf(
