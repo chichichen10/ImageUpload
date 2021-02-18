@@ -7,7 +7,7 @@ $logedin = false;
 if ($_SESSION['username'] != null) {
     $username = $_SESSION['username'];
     $logedin = true;
-    echo "<h3>WelCome <l> {$username} </l>!</h3>";
+    echo "<h3>Welcome <i> {$username} </i>!</h3>";
     echo '<a href="logout.php">Logout</a>';
     echo '<form method="post" action="upload.php" enctype="multipart/form-data">
     Upload File
@@ -60,7 +60,7 @@ if (!$logedin) {
                 echo "<img src=$data width='50' height='50'></a>";
             }
             $counter++;
-        } elseif ($row['username'] = $_SESSION['username']) {
+        } elseif ($row['username'] == $_SESSION['username']) {
             if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
                 $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
                 echo "<a href='view.php?imageid=" . $row['id'] . "'>";
