@@ -39,7 +39,7 @@ foreach ($rows as $row) {
 
     $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
     echo "<a href='view.php?imageid=" . $row['id'] . "'>";
-    echo "<img src=$data></a>"; ?>
+    echo "<img src=$data width='50' height='50'></a>"; ?>
 <br><?php
     }
         ?>
