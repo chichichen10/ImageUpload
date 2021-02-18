@@ -37,6 +37,7 @@ $result = $pdo->query($sql);
 $rows = $result->fetchAll();
 $counter = 0;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
+echo "<br><br>";
 foreach ($rows as $row) {
     if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
         $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
@@ -50,13 +51,13 @@ $numofdata = count($rows);
 $numofpage = $numofdata / 8;
 $numofpage += $numofdata % 8 == 0 ? 0 : 1;
 
-
+echo "<br>";
 if ($page > 1) {
     $prev = $page - 1;
-    echo "<br><a href=index.php?page=$prev>prev</a>";
+    echo "<a href=index.php?page=$prev>prev</a>";
 }
 echo "Page $page of $numofpage";
 if ($numofdata > $page * 8) {
     $next = $page + 1;
-    echo "<a href=index.php?page=$next>prev</a>";
+    echo "<a href=index.php?page=$next>next</a>";
 }
