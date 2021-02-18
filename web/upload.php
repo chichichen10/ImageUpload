@@ -8,6 +8,9 @@ $form_data = file_get_contents($_FILES['form_data']['tmp_name']);
 $form_type = $_FILES['form_data']['type'];
 $username = $_SESSION['username'];
 
+$id = md5(date_timestamp_get(date_create()));
+$_SESSION['imageID'] = $id;
+
 // $form_data = pg_escape_bytea($form_data);
 $base64 = base64_encode($form_data);
 echo $base64;
@@ -23,7 +26,7 @@ $pdo = new PDO("pgsql:" . sprintf(
     ltrim($db["path"], "/")
 ));
 
-$sql = "INSERT INTO images(image,private,username,type) VALUES('$base64','$form_private','$username','$form_type')";
+$sql = "INSERT INTO images(image,private,username,type,id) VALUES('$base64','$form_private','$username','$form_type','$id')";
 
 $result = $pdo->query($sql);
 if ($result) {
