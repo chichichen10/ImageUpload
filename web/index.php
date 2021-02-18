@@ -48,7 +48,7 @@ foreach ($rows as $row) {
 }
 
 $numofdata = count($rows);
-$numofpage = $numofdata / 8;
+$numofpage = (int)($numofdata / 8);
 $numofpage += $numofdata % 8 == 0 ? 0 : 1;
 
 echo "<br>";
@@ -56,7 +56,7 @@ if ($page > 1) {
     $prev = $page - 1;
     echo "<a href=index.php?page=$prev>prev</a>";
 }
-echo "Page $page of $numofpage";
+echo " Page $page of $numofpage ";
 if ($numofdata > $page * 8) {
     $next = $page + 1;
     echo "<a href=index.php?page=$next>next</a>";
