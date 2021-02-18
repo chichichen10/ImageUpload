@@ -43,7 +43,6 @@ if (isset($_POST['upload'])) {
 }
 if (isset($_POST['cancel'])) {
     $sql = "DELETE FROM images WHERE id = '$imageID'";
-    $sql = "SELECT * FROM images WHERE id = '$imageID'";
     $result = $pdo->query($sql);
     echo '<meta http-equiv=REFRESH CONTENT=0.2;url=index.php>';
 }
