@@ -14,7 +14,12 @@ $_SESSION['imageID'] = $id;
 $base64 = base64_encode($form_data);
 
 $img = new Imagick();
-$img->readImageBlob(base64_decode($base64));
+try {
+    $img->readImageBlob(base64_decode($base64));
+} catch (Exception $e) {
+    echo "Invalid File.";
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+}
 $info = $img->getImageMimeType();
 if ($info != $form_type) {
     echo "Invalid File.";
