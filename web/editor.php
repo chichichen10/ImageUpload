@@ -41,6 +41,12 @@ if (isset($_POST['upload'])) {
     unset($_SESSION['filter']);
     upload($src);
 }
+if (isset($_POST['cancel'])) {
+    $sql = "DELETE FROM images WHERE id = '$imageID'";
+    $sql = "SELECT * FROM images WHERE id = '$imageID'";
+    $result = $pdo->query($sql);
+    echo '<meta http-equiv=REFRESH CONTENT=0.2;url=index.php>';
+}
 
 
 
@@ -83,10 +89,11 @@ function upload($src)
 
     $imageID = $_SESSION['imageID'];
     $sql = "UPDATE images SET image='$src' WHERE id = '$imageID'";
+    unset($_SESSION['imageID']);
     $result = $pdo->query($sql);
     if ($result) {
         echo "File uploaded.";
-        echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+        echo '<meta http-equiv=REFRESH CONTENT=0.2;url=index.php>';
     } else {
         echo "Failed";
         echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
@@ -96,7 +103,8 @@ function upload($src)
 ?>
 <form method="post">
     <input type="submit" name="grey" value="greyscale">
-    <input type="submit" name="origin" value="original">
-    <input type="submit" name="border" value="Add Border">
+    <input type="submit" name="origin" value="Discard filter">
+    <input type="submit" name="border" value="Add Border"><br><br>
     <input type="submit" name="upload" value="Upload">
+    <input type="submit" name="cancel" value="Cancel">
 </form>
