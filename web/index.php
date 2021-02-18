@@ -36,7 +36,9 @@ $pdo = new PDO("pgsql:" . sprintf(
 $result = $pdo->query($sql);
 $rows = $result->fetchAll();
 foreach ($rows as $row) {
+
     $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+    echo "<a href='view.php?imageid=" . $row['id'] . "'";
     echo "<img src=$data>"; ?>
 <br><?php
     }
