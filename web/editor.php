@@ -103,8 +103,8 @@ function upload($src)
 ?>
 <form method="post">
     <input type="submit" name="grey" value="greyscale">
-    <input type="submit" name="origin" value="Discard filter">
-    <input type="submit" name="border" value="Add Border"><br><br>
+    <input type="submit" name="border" value="Add Border">
+    <input type="submit" name="origin" value="Cancel filter"><br><br>
     <input type="submit" name="upload" value="Upload">
-    <input type="submit" name="cancel" value="Cancel">
+    <input type="submit" name="cancel" value="Discard">
 </form>

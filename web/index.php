@@ -35,11 +35,28 @@ $pdo = new PDO("pgsql:" . sprintf(
 
 $result = $pdo->query($sql);
 $rows = $result->fetchAll();
+$counter = 0;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
 foreach ($rows as $row) {
-
-    $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
-    echo "<a href='view.php?imageid=" . $row['id'] . "'>";
-    echo "<img src=$data width='50' height='50'></a>"; ?>
-<br><?php
+    if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
+        $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+        echo "<a href='view.php?imageid=" . $row['id'] . "'>";
+        echo "<img src=$data width='50' height='50'></a>";
     }
-        ?>
+    $counter++;
+}
+
+$numofdata = count($rows);
+$numofpage = $numofdata / 8;
+$numofpage += $numofdata % 8 == 0 ? 0 : 1;
+
+
+if ($page > 1) {
+    $prev = $page - 1;
+    echo "<br><a href=index.php?page=$prev>prev</a>";
+}
+echo "Page $page of $numofpage";
+if ($numofdata > $page * 8) {
+    $next = $page + 1;
+    echo "<a href=index.php?page=$next>prev</a>";
+}
