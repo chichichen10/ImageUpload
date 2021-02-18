@@ -22,10 +22,27 @@ $origin = $row['image'];
 $src = $origin;
 if (isset($_POST['grey'])) {
     $src = grayscale($src);
+    $_SESSION['filter'] = 'grey';
 }
 if (isset($_POST['border'])) {
     $src = border($src);
+    $_SESSION['filter'] = 'border';
 }
+if (isset($_POST['orign'])) {
+    unset($_SESSION['filter']);
+}
+if (isset($_POST['upload'])) {
+    if (isset($_SESSION['filter'])) {
+        if ($_SESSION['filter'] == 'grey')
+            $src = grayscale($src);
+        if ($_SESSION['filter'] == 'border')
+            $src = border($src);
+    }
+    unset($_SESSION['filter']);
+    upload($src);
+}
+
+
 
 echo "<image src='data:image/png;base64,$src'>";
 
@@ -81,4 +98,5 @@ function upload($src)
     <input type="submit" name="grey" value="greyscale">
     <input type="submit" name="origin" value="original">
     <input type="submit" name="border" value="Add Border">
+    <input type="submit" name="upload" value="Upload">
 </form>
