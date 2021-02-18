@@ -3,8 +3,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On'); ?>
 <h1>This is Index</h1>
 <?php
+$logedin = false;
 if ($_SESSION['username'] != null) {
     $username = $_SESSION['username'];
+    $logedin = true;
     echo "<h3>WelCome <l> {$username} </l>!</h3>";
     echo '<a href="logout.php">Logout</a>';
     echo '<form method="post" action="upload.php" enctype="multipart/form-data">
@@ -38,16 +40,38 @@ $rows = $result->fetchAll();
 $counter = 0;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 echo "<br><br>";
-foreach ($rows as $row) {
-    if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
-        $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
-        echo "<a href='view.php?imageid=" . $row['id'] . "'>";
-        echo "<img src=$data width='50' height='50'></a>";
+if (!$logedin) {
+    foreach ($rows as $row) {
+        if (!$row['private']) {
+            if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
+                $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+                echo "<a href='view.php?imageid=" . $row['id'] . "'>";
+                echo "<img src=$data width='50' height='50'></a>";
+            }
+            $counter++;
+        }
     }
-    $counter++;
+} else {
+    foreach ($rows as $row) {
+        if (!$row['private']) {
+            if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
+                $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+                echo "<a href='view.php?imageid=" . $row['id'] . "'>";
+                echo "<img src=$data width='50' height='50'></a>";
+            }
+            $counter++;
+        } elseif ($row['username'] = $_SESSION['username']) {
+            if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
+                $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+                echo "<a href='view.php?imageid=" . $row['id'] . "'>";
+                echo "<img src=$data width='50' height='50'></a>";
+            }
+            $counter++;
+        }
+    }
 }
 
-$numofdata = count($rows);
+$numofdata = $counter;
 $numofpage = (int)($numofdata / 8);
 $numofpage += $numofdata % 8 == 0 ? 0 : 1;
 
