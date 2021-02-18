@@ -23,7 +23,7 @@ if ($_SESSION['username'] != null) {
     echo '<h3> Hi guest!</h3>';
     echo '<a href="loginpage.php">Click here to Login</a>';
 }
-$sql = "SELECT * FROM images ORDER BY timestamp DESC";
+$sql = "SELECT * FROM images ORDER BY time DESC";
 
 $db = parse_url(getenv("DATABASE_URL"));
 
