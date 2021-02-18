@@ -20,7 +20,7 @@ $result = $pdo->query($sql);
 $row = $result->fetch();
 $origin = $row['image'];
 $src = $origin;
-if (isset($_POST['orign'])) {
+if (isset($_POST['origin'])) {
     unset($_SESSION['filter']);
 }
 if (isset($_POST['grey'])) {
