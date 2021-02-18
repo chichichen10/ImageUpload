@@ -26,7 +26,7 @@ if ($_SESSION['check_word'] == $_POST['check']) {
     if ($id != null && $pwd != null && $id == $row[1] && $pwd == $row[2]) {
         $_SESSION['username'] = $id;
         echo "Logged in.";
-        if ($id == 'Admin')
+        if ($id == 'admin')
             echo '<meta http-equiv=REFRESH CONTENT=1;url=initializepage.php>';
         else
             echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
