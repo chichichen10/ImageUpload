@@ -31,7 +31,7 @@ $sql = "INSERT INTO images(image,private,username,type,id) VALUES('$base64','$fo
 $result = $pdo->query($sql);
 if ($result) {
     echo "File uploaded.";
-    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=editor.php>';
 } else {
     echo "Failed";
     echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
