@@ -1,6 +1,7 @@
 <?php session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 'On'); ?>
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On'); 
+?>
 <h1>This is Index</h1>
 <?php
 $logedin = false;
@@ -22,7 +23,7 @@ if ($_SESSION['username'] != null) {
     echo '<h3> Hi guest!</h3>';
     echo '<a href="loginpage.php">Click here to Login</a>';
 }
-$sql = "SELECT * FROM images";
+$sql = "SELECT * FROM images ORDER BY timestamp DESC";
 
 $db = parse_url(getenv("DATABASE_URL"));
 

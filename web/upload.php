@@ -11,9 +11,7 @@ $username = $_SESSION['username'];
 $id = md5(date_timestamp_get(date_create()));
 $_SESSION['imageID'] = $id;
 
-// $form_data = pg_escape_bytea($form_data);
 $base64 = base64_encode($form_data);
-echo $base64;
 
 $db = parse_url(getenv("DATABASE_URL"));
 
