@@ -20,6 +20,9 @@ $result = $pdo->query($sql);
 $row = $result->fetch();
 $origin = $row['image'];
 $src = $origin;
+if (isset($_POST['orign'])) {
+    unset($_SESSION['filter']);
+}
 if (isset($_POST['grey'])) {
     $src = grayscale($src);
     $_SESSION['filter'] = 'grey';
@@ -28,9 +31,7 @@ if (isset($_POST['border'])) {
     $src = border($src);
     $_SESSION['filter'] = 'border';
 }
-if (isset($_POST['orign'])) {
-    unset($_SESSION['filter']);
-}
+
 if (isset($_POST['upload'])) {
     if (isset($_SESSION['filter'])) {
         if ($_SESSION['filter'] == 'grey')
