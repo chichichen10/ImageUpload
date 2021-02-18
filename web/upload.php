@@ -13,33 +13,26 @@ $_SESSION['imageID'] = $id;
 
 $base64 = base64_encode($form_data);
 
-$img = new Imagick();
-$img->readImageBlob(base64_decode($base64));
-$info = $img->identifyImage();
-if ($info['format'] != $form_type) {
-    echo "Invalid File.";
-    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+
+
+$db = parse_url(getenv("DATABASE_URL"));
+
+$pdo = new PDO("pgsql:" . sprintf(
+    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+    $db["host"],
+    $db["port"],
+    $db["user"],
+    $db["pass"],
+    ltrim($db["path"], "/")
+));
+
+$sql = "INSERT INTO images(image,private,username,type,id) VALUES('$base64','$form_private','$username','$form_type','$id')";
+
+$result = $pdo->query($sql);
+if ($result) {
+    echo "File uploaded.";
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=editor.php>';
 } else {
-
-    $db = parse_url(getenv("DATABASE_URL"));
-
-    $pdo = new PDO("pgsql:" . sprintf(
-        "host=%s;port=%s;user=%s;password=%s;dbname=%s",
-        $db["host"],
-        $db["port"],
-        $db["user"],
-        $db["pass"],
-        ltrim($db["path"], "/")
-    ));
-
-    $sql = "INSERT INTO images(image,private,username,type,id) VALUES('$base64','$form_private','$username','$form_type','$id')";
-
-    $result = $pdo->query($sql);
-    if ($result) {
-        echo "File uploaded.";
-        echo '<meta http-equiv=REFRESH CONTENT=1;url=editor.php>';
-    } else {
-        echo "Failed";
-        echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
-    }
+    echo "Failed";
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
 }
