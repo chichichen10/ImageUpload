@@ -51,6 +51,31 @@ function border($src)
     return $src;
 }
 
+function upload($src)
+{
+    $db = parse_url(getenv("DATABASE_URL"));
+
+    $pdo = new PDO("pgsql:" . sprintf(
+        "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+        $db["host"],
+        $db["port"],
+        $db["user"],
+        $db["pass"],
+        ltrim($db["path"], "/")
+    ));
+
+    $imageID = $_SESSION['imageID'];
+    $sql = "UPDATE images SET image='$src' WHERE id = '$imageID'";
+    $result = $pdo->query($sql);
+    if ($result) {
+        echo "File uploaded.";
+        echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+    } else {
+        echo "Failed";
+        echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+    }
+}
+
 ?>
 <form method="post">
     <input type="submit" name="grey" value="greyscale">
