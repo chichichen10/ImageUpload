@@ -3,6 +3,11 @@
 // ini_set('display_errors', 'On'); 
 ?>
 <h1>This is Index</h1>
+<div class="alert">
+    <span class="closebtn">&times;</span>
+    According to the instruction of storing image into database, this system convert the image into base64 format and
+    save it into Postgresql, Do not upload too large file or it may cause failure.
+</div>
 <?php
 $logedin = false;
 if ($_SESSION['username'] != null) {
