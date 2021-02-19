@@ -1,11 +1,8 @@
 <?php session_start();
 ?>
 <h1>This is Index</h1>
-<h3 style="color:red">
-    According to the instruction, this system convert the image into base64 format and
-    save it into Postgresql.</h3>
 <h3 style="background-color:red;color:yellow">
-    Please do not upload any large file(>100MB) or it may cause failure.<br>
+    The maximum size for an image is 50MB.<br>
     <?php
     $logedin = false;
     if ($_SESSION['username'] != null) {
