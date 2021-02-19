@@ -8,8 +8,6 @@
     save it into Postgresql.</h3>
 <h3 style="background-color:red;color:yellow">
     Please do not upload any large file(>100MB) or it may cause failure.<br>
-    Please do not upload any large file(>100MB) or it may cause failure.<br>
-    Please do not upload any large file(>100MB) or it may cause failure.
     <?php
     $logedin = false;
     if ($_SESSION['username'] != null) {
