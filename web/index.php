@@ -16,8 +16,7 @@
         echo "<h3>Welcome <i> {$username} </i>!</h3>";
         echo '<a href="logout.php">Logout</a>';
         echo '<form method="post" action="upload.php" enctype="multipart/form-data">
-    Upload File
-    <input type="hidden" name="MAX_FILE_SIZE" value="100000000"> <br>
+    Upload File<br>
     Upload
     <input type="file" name="form_data" required ><br>
     Private <input type="radio" name="private" checked value = "true"></br>
