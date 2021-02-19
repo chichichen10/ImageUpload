@@ -4,17 +4,20 @@
 ?>
 <h1>This is Index</h1>
 <h3 style="color:red">
-    According to the instruction of storing image into database, this system convert the image into base64 format and
-    save it into Postgresql, Do not upload too large file or it may cause failure.
-</h3>
-<?php
-$logedin = false;
-if ($_SESSION['username'] != null) {
-    $username = $_SESSION['username'];
-    $logedin = true;
-    echo "<h3>Welcome <i> {$username} </i>!</h3>";
-    echo '<a href="logout.php">Logout</a>';
-    echo '<form method="post" action="upload.php" enctype="multipart/form-data">
+    According to the instruction, this system convert the image into base64 format and
+    save it into Postgresql.</h3>
+<h3 style="background-color:red;color:yellow">
+    Please do not upload any large file(>1MB) or it may cause failure.<br>
+    Please do not upload any large file(>1MB) or it may cause failure.<br>
+    Please do not upload any large file(>1MB) or it may cause failure.
+    <?php
+    $logedin = false;
+    if ($_SESSION['username'] != null) {
+        $username = $_SESSION['username'];
+        $logedin = true;
+        echo "<h3>Welcome <i> {$username} </i>!</h3>";
+        echo '<a href="logout.php">Logout</a>';
+        echo '<form method="post" action="upload.php" enctype="multipart/form-data">
     Upload File
     <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> <br>
     Upload
@@ -23,70 +26,70 @@ if ($_SESSION['username'] != null) {
     Public <input type="radio" name="private" value = "false"></br>
     <input type="submit" name="submit" value="submit">
     </form>';
-} else {
-    echo '<h3> Hi guest!</h3>';
-    echo '<a href="loginpage.php">Click here to Login</a>';
-}
-$sql = "SELECT * FROM images ORDER BY time DESC";
+    } else {
+        echo '<h3> Hi guest!</h3>';
+        echo '<a href="loginpage.php">Click here to Login</a>';
+    }
+    $sql = "SELECT * FROM images ORDER BY time DESC";
 
-$db = parse_url(getenv("DATABASE_URL"));
+    $db = parse_url(getenv("DATABASE_URL"));
 
-$pdo = new PDO("pgsql:" . sprintf(
-    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
-    $db["host"],
-    $db["port"],
-    $db["user"],
-    $db["pass"],
-    ltrim($db["path"], "/")
-));
+    $pdo = new PDO("pgsql:" . sprintf(
+        "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+        $db["host"],
+        $db["port"],
+        $db["user"],
+        $db["pass"],
+        ltrim($db["path"], "/")
+    ));
 
-$result = $pdo->query($sql);
-$rows = $result->fetchAll();
-$counter = 0;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-echo "<br><br>";
-if (!$logedin) {
-    foreach ($rows as $row) {
-        if (!$row['private']) {
-            if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
-                $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
-                echo "<a href='view.php?imageid=" . $row['id'] . "'>";
-                echo "<img src=$data width='50' height='50'></a>";
+    $result = $pdo->query($sql);
+    $rows = $result->fetchAll();
+    $counter = 0;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    echo "<br><br>";
+    if (!$logedin) {
+        foreach ($rows as $row) {
+            if (!$row['private']) {
+                if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
+                    $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+                    echo "<a href='view.php?imageid=" . $row['id'] . "'>";
+                    echo "<img src=$data width='50' height='50'></a>";
+                }
+                $counter++;
             }
-            $counter++;
+        }
+    } else {
+        foreach ($rows as $row) {
+            if (!$row['private']) {
+                if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
+                    $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+                    echo "<a href='view.php?imageid=" . $row['id'] . "'>";
+                    echo "<img src=$data width='50' height='50'></a>";
+                }
+                $counter++;
+            } elseif ($row['username'] == $_SESSION['username']) {
+                if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
+                    $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
+                    echo "<a href='view.php?imageid=" . $row['id'] . "'>";
+                    echo "<img src=$data width='50' height='50'></a>";
+                }
+                $counter++;
+            }
         }
     }
-} else {
-    foreach ($rows as $row) {
-        if (!$row['private']) {
-            if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
-                $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
-                echo "<a href='view.php?imageid=" . $row['id'] . "'>";
-                echo "<img src=$data width='50' height='50'></a>";
-            }
-            $counter++;
-        } elseif ($row['username'] == $_SESSION['username']) {
-            if ($counter >= 8 * ($page - 1) && $counter < 8 * $page) {
-                $data = 'data:' . $row['type'] . ';base64,' . $row['image'];
-                echo "<a href='view.php?imageid=" . $row['id'] . "'>";
-                echo "<img src=$data width='50' height='50'></a>";
-            }
-            $counter++;
-        }
+
+    $numofdata = $counter;
+    $numofpage = (int)($numofdata / 8);
+    $numofpage += $numofdata % 8 == 0 ? 0 : 1;
+
+    echo "<br>";
+    if ($page > 1) {
+        $prev = $page - 1;
+        echo "<a href=index.php?page=$prev>prev</a>";
     }
-}
-
-$numofdata = $counter;
-$numofpage = (int)($numofdata / 8);
-$numofpage += $numofdata % 8 == 0 ? 0 : 1;
-
-echo "<br>";
-if ($page > 1) {
-    $prev = $page - 1;
-    echo "<a href=index.php?page=$prev>prev</a>";
-}
-echo " Page $page of $numofpage ";
-if ($numofdata > $page * 8) {
-    $next = $page + 1;
-    echo "<a href=index.php?page=$next>next</a>";
-}
+    echo " Page $page of $numofpage ";
+    if ($numofdata > $page * 8) {
+        $next = $page + 1;
+        echo "<a href=index.php?page=$next>next</a>";
+    }
