@@ -13,3 +13,5 @@ link to the website: https://csci4140-assign1-1155100383.herokuapp.com/index.php
 * view.php: After clicking on the image from index, users will be direct to the page which show the original size of the image.
 * initializepage.php: If the admin log in, he/she will be directed to the page to see if he/she wants to perform system initialization.
 * initialize.php: Initialize the system and redirect to index.
+
+Since the orginal post limit in Heroku's php.ini file is only 2MB, in order to allow user to upload a larger file, a file name .user.ini is made and it can allow user to uplaod file no larger than 50MB, which is an acceptable size since there is 1GB data allowance in the database. 
