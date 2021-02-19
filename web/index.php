@@ -1,6 +1,7 @@
 <?php session_start();
 // error_reporting(E_ALL);
-// ini_set('display_errors', 'On'); 
+ini_set('post_max_size', '20M');
+ini_set('upload_max_filesize', '20M');
 ?>
 <h1>This is Index</h1>
 <h3 style="color:red">
