@@ -18,6 +18,7 @@ try {
     $img->readImageBlob(base64_decode($base64));
 } catch (Exception $e) {
     echo "Invalid File.";
+    echo $e;
     echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
 }
 $info = $img->getImageMimeType();
