@@ -1,6 +1,3 @@
-# assignment-1-chichichen10
-assignment-1-chichichen10 created by GitHub Classroom
-
 link to the website: https://csci4140-assign1-1155100383.herokuapp.com/index.php
 
 * index.php : Users can view public images uploaded by all users and their own private image, and also upload image if user is logged in.
