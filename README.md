@@ -1,5 +1,7 @@
 link to the website: https://csci4140-assign1-1155100383.herokuapp.com/index.php
 
+UserID/pw: Alice/csci4140
+
 * index.php : Users can view public images uploaded by all users and their own private image, and also upload image if user is logged in.
 * loginpage.php: Allow user to login.
 * login.php: The system will check the input by user and return error message if there exists or login success message then redirect to index page.
